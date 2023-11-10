@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
-st.set_page_config(layout="wide")
+st.set_page_config(page_title="Open Medieval Bibliography", 
+                   page_icon="images/logo.png", # Replace with the path to your favicon
+                   layout="wide")
 
 st.sidebar.image("images/logo.png")
 
@@ -50,6 +52,7 @@ authors = st.sidebar.text_input("Author(s)")
 types = st.sidebar.multiselect("Select Type of Publication", ['article', 'book', 'book-chapter', 'paratext', 'erratum',
                                                     'dissertation', 'editorial', 'letter', 'report', 'other',
                                                     'dataset'])
+publications = st.sidebar.text_input("Publications")
 use_year = st.sidebar.toggle("Date Range")
 if use_year:
     start_date, end_date = st.sidebar.slider("Select Year Range", 1960, 2022, (1961, 2023), step=1)
@@ -58,7 +61,8 @@ if st.sidebar.button("Search"):
     # Filter by authors
     if authors:
         res_df = res_df.loc[res_df["authors"].str.contains(authors, case=False, na=False)]
-
+    if publications:
+        res_df = res_df.loc[res_df["publication"].str.contains(publications, case=False, na=False)]
     # Filter by year range
     if use_year:
         res_df = res_df[(res_df['year'] >= start_date) & (res_df['year'] <= end_date)]
