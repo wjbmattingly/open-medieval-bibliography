@@ -1,3 +1,5 @@
 data/*.json
 data/*.csv
 data/database.csv
+data/database.parquet
+data/omb-data.parquet
