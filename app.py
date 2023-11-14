@@ -49,7 +49,7 @@ if not os.path.exists("database/full-omb-data.db"):
     )
 
 
-def load_data(authors=None, concepts=None, publications=None, start_date=None, end_date=None, search=None, title=True, abstract=True, types=None):
+def load_data(authors=None, concepts=None, publications=None, start_date=None, end_date=None, search=None, title=True, abstract=True, types=None, max_hits=10000):
     query_parts = []
     params = []
 
@@ -80,6 +80,8 @@ def load_data(authors=None, concepts=None, publications=None, start_date=None, e
     query = "SELECT * FROM your_table_name"
     if query_parts:
         query += " WHERE " + " AND ".join(query_parts)
+    
+    query += f" LIMIT {max_hits}"  # Adding the LIMIT clause
 
     # Connect to your SQLite database
     conn = sqlite3.connect('database/full-omb-data.db')
