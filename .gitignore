@@ -3,3 +3,15 @@ data/*.csv
 data/database.csv
 data/database.parquet
 data/omb-data.parquet
+build-database.ipynb
+carolingian.ipynb
+demo.gif
+pd2sql.ipynb
+data/.DS_Store
+data/full-database.parquet
+data/omb-database.parquet
+database/full-omb-data.db
+database/omb-data.db
+database/omb-data.parquet
+database/your_database_name.db
+subdata/carolingian.json
